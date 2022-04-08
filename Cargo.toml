@@ -1,0 +1,3 @@
+[workspace]
+
+members = ["fs-ignore", "fs-jwalk", "fs-tokio", "fscrawler", "fswalk"]
