@@ -1,6 +1,6 @@
-use rayon::prelude::*;
 use std::env;
 
+use rayon::prelude::*;
 use walkdir::WalkDir;
 
 fn main() {
@@ -11,11 +11,11 @@ fn main() {
         .par_bridge()
         .for_each(|entry| match entry {
             Ok(entry) => {
-                let path = entry.path();
-                if !path.is_dir() {
+                if entry.file_type().is_file() {
+                    let path = entry.path();
                     println!("{}", path.display());
                 }
             }
-            Err(e) => eprintln!("{e}"),
+            Err(e) => eprintln!("{}", e),
         });
 }

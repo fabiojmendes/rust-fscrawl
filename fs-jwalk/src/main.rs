@@ -8,9 +8,8 @@ fn main() {
     for entry in WalkDir::new(root) {
         match entry {
             Ok(entry) => {
-                let path = entry.path();
-                if !path.is_dir() {
-                    println!("{}", path.display());
+                if entry.file_type().is_file() {
+                    println!("{}", entry.path().display());
                 }
             }
             Err(e) => eprintln!("error: {}", e),
